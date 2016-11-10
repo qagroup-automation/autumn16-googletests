@@ -2,6 +2,7 @@ package com.qagroup.google.tests;
 
 import static org.testng.Assert.assertEquals;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -17,7 +18,9 @@ public class SimpleGoogleScenarioTest {
 
 	@BeforeClass(alwaysRun = true)
 	public void setUp() {
-		System.setProperty("webdriver.gecko.driver", "C:\\geckodriver.exe");
+		String pathSeparator = File.separator;
+		String pathToDriver = "assets" + pathSeparator + "webdriver" + pathSeparator + "geckodriver.exe";
+		System.setProperty("webdriver.gecko.driver", pathToDriver);
 
 		driver = new FirefoxDriver();
 		baseUrl = "https://www.google.com.ua/";
