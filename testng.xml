@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression" verbose="1" parallel="classes">
+	<test name="Google Search Tests">
+		<classes>
+			<class name="com.qagroup.google.tests.ScreenKeyboardTest"></class>
+			<class name="com.qagroup.google.tests.SearchResultNumberTest"></class>
+			<class name="com.qagroup.google.tests.SimpleGoogleScenarioTest"></class>
+		</classes>
+	</test>
+
+</suite>

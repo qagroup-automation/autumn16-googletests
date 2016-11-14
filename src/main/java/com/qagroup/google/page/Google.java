@@ -5,12 +5,15 @@ import java.io.File;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import ru.yandex.qatools.allure.annotations.Step;
+
 public class Google {
 
 	private WebDriver driver;
 
-	private static String baseUrl = "https://www.google.com.ua/";
+	private static final String baseUrl = "https://www.google.com.ua/";
 
+	@Step("Open google start page: " + baseUrl)
 	public StartPage openStartPage() {
 		String pathSeparator = File.separator;
 		String pathToDriver = "assets" + pathSeparator + "webdriver" + pathSeparator + "geckodriver.exe";

@@ -1,6 +1,5 @@
 package com.qagroup.google.tests;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -10,9 +9,11 @@ import com.qagroup.google.page.Google;
 import com.qagroup.google.page.ResultPage;
 import com.qagroup.google.page.StartPage;
 
-public class SearchResultNumberTest {
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Stories;
 
-	private WebDriver driver;
+@Features("Search")
+public class SearchResultNumberTest {
 
 	private StartPage startPage;
 	private ResultPage resultPage;
@@ -23,13 +24,14 @@ public class SearchResultNumberTest {
 		startPage = google.openStartPage();
 	}
 
+	@Stories("Result Number Story")
 	@Test
 	public void testNumberOfSearchResult() {
 		resultPage = startPage.searchFor("Hello World!");
 
 		int actualNumber = resultPage.getSearchResultNumber();
 
-		Assert.assertEquals(actualNumber, 10);
+		Assert.assertEquals(actualNumber, 10, "The number of found results is incorrect: ");
 	}
 
 	@AfterClass(alwaysRun = true)
