@@ -43,8 +43,8 @@ public class SimpleGoogleScenarioTest {
 
 	@Test
 	public void testInDomainLanguage() {
-//		google.openStartPage().searchFor("Selenium IDE")
-//		.selectResult("Selenium IDE Plugins").navigateToDownloadPage();
+		// google.openStartPage().searchFor("Selenium IDE")
+		// .selectResult("Selenium IDE Plugins").navigateToDownloadPage();
 	}
 
 	@AfterClass(alwaysRun = true)

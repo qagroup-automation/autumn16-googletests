@@ -38,4 +38,8 @@ public class StartPage {
 	private void clickSearchButton() {
 		searchButton.click();
 	}
+	
+	public StartPage and() {
+		return this;
+	}
 }

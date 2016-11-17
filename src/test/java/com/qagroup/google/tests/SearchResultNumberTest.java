@@ -6,6 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.qagroup.google.page.Google;
+import com.qagroup.google.page.IWebApp;
+import com.qagroup.google.page.IWebAppTest;
 import com.qagroup.google.page.ResultPage;
 import com.qagroup.google.page.StartPage;
 
@@ -13,7 +15,7 @@ import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Stories;
 
 @Features("Search")
-public class SearchResultNumberTest {
+public class SearchResultNumberTest implements IWebAppTest {
 
 	private StartPage startPage;
 	private ResultPage resultPage;
@@ -28,8 +30,10 @@ public class SearchResultNumberTest {
 	@Test
 	public void testNumberOfSearchResult() {
 		resultPage = startPage.searchFor("Hello World!");
-
 		int actualNumber = resultPage.getSearchResultNumber();
+
+		// int actualNumber = startPage.searchFor("Hello
+		// World!").getSearchResultNumber();
 
 		Assert.assertEquals(actualNumber, 10, "The number of found results is incorrect: ");
 	}
@@ -37,6 +41,10 @@ public class SearchResultNumberTest {
 	@AfterClass(alwaysRun = true)
 	public void tearDown() {
 		google.close();
+	}
+	
+	public IWebApp getTestedApp() {
+		return this.google;
 	}
 
 }
