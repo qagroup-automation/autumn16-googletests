@@ -2,7 +2,10 @@ package com.qagroup.google.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.qagroup.google.page.Google;
@@ -21,28 +24,30 @@ public class SearchResultNumberTest implements IWebAppTest {
 	private ResultPage resultPage;
 	private Google google = new Google();
 
-	@BeforeClass
+	@BeforeMethod
 	public void setup() {
 		startPage = google.openStartPage();
 	}
 
 	@Stories("Result Number Story")
-	@Test
-	public void testNumberOfSearchResult() {
-		resultPage = startPage.searchFor("Hello World!");
+	@Test(dataProvider = "dataProvider")
+	public void testNumberOfSearchResult(String query) {
+		resultPage = startPage.searchFor(query);
 		int actualNumber = resultPage.getSearchResultNumber();
-
-		// int actualNumber = startPage.searchFor("Hello
-		// World!").getSearchResultNumber();
 
 		Assert.assertEquals(actualNumber, 10, "The number of found results is incorrect: ");
 	}
 
-	@AfterClass(alwaysRun = true)
+	@DataProvider(name = "dataProvider")
+	public Object[][] data() {
+		return new Object[][] { { "Hello World!" }, { "911" }, { "selenium ide" } };
+	}
+
+	@AfterMethod(alwaysRun = true)
 	public void tearDown() {
 		google.close();
 	}
-	
+
 	public IWebApp getTestedApp() {
 		return this.google;
 	}

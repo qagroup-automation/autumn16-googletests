@@ -1,59 +1,51 @@
 package com.qagroup.google.tests;
 
-import java.io.File;
-import java.util.concurrent.TimeUnit;
-
-import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class ScreenKeyboardTest {
+import com.qagroup.google.page.Google;
+import com.qagroup.google.page.IWebApp;
+import com.qagroup.google.page.IWebAppTest;
+import com.qagroup.google.page.StartPage;
 
-	private WebDriver driver;
-	private String baseUrl;
+public class ScreenKeyboardTest implements IWebAppTest {
 
-	WebElement keyboard;
+	private Google google = new Google();
+
+	private StartPage startPage;
 
 	@BeforeClass
 	public void setup() {
-		String pathSeparator = File.separator;
-		String pathToDriver = "assets" + pathSeparator + "webdriver" + pathSeparator + "geckodriver.exe";
-		System.setProperty("webdriver.gecko.driver", pathToDriver);
-
-		baseUrl = "https://www.google.com";
-
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		startPage = google.openStartPage();
 	}
 
 	@Test(priority = 1)
 	public void testKeyboardAppearance() {
-		driver.get(baseUrl);
-		driver.findElement(By.cssSelector("#gs_st0")).click();
+		startPage.openScreenKeyboard();
 
-		keyboard = driver.findElement(By.id("kbd"));
-
-		Assert.assertTrue(keyboard.isDisplayed());
+		Assert.assertTrue(startPage.isScreenKeyboardDisplayed(),
+				"Screen Keyboard should be displayed after click on keyboard icon.");
 	}
 
 	@Test(priority = 2)
 	public void testKeyboardClose() {
-		WebElement keyboardCloseButton = keyboard.findElement(By.cssSelector(".vk-t-btn"));
+		startPage.closeScreenKeyboard();
 
-		keyboardCloseButton.click();
-
-		Assert.assertFalse(keyboard.isDisplayed());
+		Assert.assertFalse(startPage.isScreenKeyboardDisplayed(), "Screen Keyboard should be hidden after click on Close (x) button.");
 	}
 
 	@AfterClass(alwaysRun = true)
 	public void tearDown() {
-		if (driver != null)
-			driver.quit();
+		google.close();
+	}
+
+	@Override
+	public IWebApp getTestedApp() {
+		return google;
 	}
 
 }

@@ -5,7 +5,6 @@ import java.io.File;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -17,11 +16,7 @@ public class Google implements IWebApp {
 
 	@Step("Open google start page: " + baseUrl)
 	public StartPage openStartPage() {
-		String pathSeparator = File.separator;
-		String pathToDriver = "assets" + pathSeparator + "webdriver" + pathSeparator + "geckodriver.exe";
-		System.setProperty("webdriver.gecko.driver", pathToDriver);
-
-		driver = new FirefoxDriver();
+		driver = Browser.getDriver();
 		driver.get(baseUrl);
 
 		return new StartPage(driver);
