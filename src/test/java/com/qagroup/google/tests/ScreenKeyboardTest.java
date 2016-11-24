@@ -1,7 +1,5 @@
 package com.qagroup.google.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -35,7 +33,8 @@ public class ScreenKeyboardTest implements IWebAppTest {
 	public void testKeyboardClose() {
 		startPage.closeScreenKeyboard();
 
-		Assert.assertFalse(startPage.isScreenKeyboardDisplayed(), "Screen Keyboard should be hidden after click on Close (x) button.");
+		Assert.assertFalse(startPage.isScreenKeyboardDisplayed(),
+				"Screen Keyboard should be hidden after click on Close (x) button.");
 	}
 
 	@AfterClass(alwaysRun = true)

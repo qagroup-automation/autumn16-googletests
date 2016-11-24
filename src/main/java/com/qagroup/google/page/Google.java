@@ -28,6 +28,21 @@ public class Google implements IWebApp {
 		this.driver = null;
 	}
 
+	public BananaPage openBananaSite() {
+		driver = Browser.getDriver();
+		driver.get("http://ch.my-dev2.org/en-US/node/154");
+
+		return new BananaPage(driver);
+	}
+
+	public OrangeLoginPage openOrangeLoginPage() {
+		System.setProperty("browser", "chrome");
+		driver = Browser.getDriver();
+		
+		driver.get("https://enterprise-demo.orangehrmlive.com/symfony/web/index.php/auth/login");
+		return new OrangeLoginPage(driver);
+	}
+
 	public File makeScreenshot() {
 		return TakesScreenshot.class.cast(this.driver).getScreenshotAs(OutputType.FILE);
 	}

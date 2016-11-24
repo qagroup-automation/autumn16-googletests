@@ -1,5 +1,8 @@
 package com.qagroup.google.page;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class StartPage {
@@ -25,6 +29,9 @@ public class StartPage {
 
 	@FindBy(id = "kbd")
 	private WebElement screenKeyboard;
+
+	@FindBy(css = ".vk-btn")
+	private List<WebElement> keys;
 
 	@FindBy(css = ".vk-t-btn")
 	private WebElement keyboardCloseButton;
@@ -79,5 +86,33 @@ public class StartPage {
 
 	public StartPage and() {
 		return this;
+	}
+
+	private List<String> getLettersOnKeyboard() {
+		List<String> letters = new ArrayList<>();
+		for (WebElement key : keys) {
+			letters.add(key.getText());
+		}
+		return letters;
+
+		// return keys.stream().map(e ->
+		// e.getText()).collect(Collectors.toList());
+	}
+
+	@Step("Type [{0}] from screen keyboard")
+	public void typeFromScreenKeyboard(String string) {
+		String[] letters = string.split("");
+		List<String> lettersOnKeyboard = getLettersOnKeyboard();
+
+		for (String letter : letters) {
+			int index = lettersOnKeyboard.indexOf(letter);
+			keys.get(index).click();
+		}
+	}
+
+	@Attachment("Search Input text")
+	@Step("Read text from search input")
+	public String getSearchInputText() {
+		return this.searchInput.getAttribute("value");
 	}
 }
