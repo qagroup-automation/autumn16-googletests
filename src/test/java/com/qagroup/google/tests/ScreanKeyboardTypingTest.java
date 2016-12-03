@@ -1,6 +1,7 @@
 package com.qagroup.google.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import com.qagroup.google.page.Google;
@@ -25,6 +26,11 @@ public class ScreanKeyboardTypingTest implements IWebAppTest {
 	@Override
 	public IWebApp getTestedApp() {
 		return google;
+	}
+	
+	@AfterClass(alwaysRun = true)
+	public void tearDown() {
+		google.close();
 	}
 
 }

@@ -1,14 +1,37 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Regression" verbose="1" parallel="classes">
+<suite name="Regression" verbose="1" parallel="tests"
+	group-by-instances="true" thread-count="2">
+
 	<test name="Google Search Tests">
 		<classes>
 			<class name="com.qagroup.google.tests.ScreenKeyboardTest"></class>
 			<class name="com.qagroup.google.tests.SearchResultNumberTest"></class>
 
 			<!-- <class name="com.qagroup.google.tests.SimpleGoogleScenarioTest"></class> -->
-			<class name="com.qagroup.google.tests.ScreanKeyboardTypingTest"></class>
 		</classes>
 	</test>
+
+	<!-- <test name="Result Number"> -->
+	<!-- <classes> -->
+	<!-- <class name="com.qagroup.google.tests.SearchResultNumberTest"></class> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+
+	<!-- <test name="Screan Keyboard"> -->
+	<!-- <classes> -->
+	<!-- <class name="com.qagroup.google.tests.SearchResultNumberTest"></class> -->
+	<!-- <class name="com.qagroup.google.tests.ScreanKeyboardTypingTest"></class> -->
+	<!-- </classes> -->
+	<!-- </test> -->
+
+	<!-- <test name="Duplicate"> -->
+	<!-- <classes> -->
+	<!-- <class name="com.qagroup.google.tests.ScreenKeyboardTest"></class> -->
+	<!-- <class name="com.qagroup.google.tests.SearchResultNumberTest"></class> -->
+
+	<!-- <class name="com.qagroup.google.tests.SimpleGoogleScenarioTest"></class> -->
+	<!-- </classes> -->
+	<!-- </test> -->
 
 </suite>
