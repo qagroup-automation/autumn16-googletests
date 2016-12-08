@@ -6,6 +6,9 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
+import com.qagroup.google.tools.Browser;
+import com.qagroup.google.tools.IWebApp;
+
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class Google implements IWebApp {
@@ -23,8 +26,12 @@ public class Google implements IWebApp {
 	}
 
 	public void close() {
-		if (this.driver != null)
-			this.driver.quit();
+		if (this.driver != null) {
+			try {
+				this.driver.quit();
+			} catch (Exception e) {
+			}
+		}
 		this.driver = null;
 	}
 
@@ -38,7 +45,7 @@ public class Google implements IWebApp {
 	public OrangeLoginPage openOrangeLoginPage() {
 		System.setProperty("browser", "chrome");
 		driver = Browser.getDriver();
-		
+
 		driver.get("https://enterprise-demo.orangehrmlive.com/symfony/web/index.php/auth/login");
 		return new OrangeLoginPage(driver);
 	}

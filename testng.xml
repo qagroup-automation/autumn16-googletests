@@ -7,7 +7,9 @@
 		<classes>
 			<class name="com.qagroup.google.tests.ScreenKeyboardTest"></class>
 			<class name="com.qagroup.google.tests.SearchResultNumberTest"></class>
-
+			<class name="com.qagroup.google.tests.ScreanKeyboardTypingTest"></class>
+			<class name="com.qagroup.google.tests.NewFancyTest"></class>
+			<class name="com.qagroup.google.tests.LoginIntoOrangeTest"></class>
 			<!-- <class name="com.qagroup.google.tests.SimpleGoogleScenarioTest"></class> -->
 		</classes>
 	</test>

@@ -1,19 +1,16 @@
 package com.qagroup.google.tests;
 
+import static com.qagroup.google.page.UserData.SYSTEM_ADMINISTRATOR;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.qagroup.google.page.Google;
-import com.qagroup.google.page.IWebApp;
-import com.qagroup.google.page.IWebAppTest;
 import com.qagroup.google.page.OrangeHomePage;
 import com.qagroup.google.page.OrangeLoginPage;
-import com.qagroup.google.page.UserModel;
-import static com.qagroup.google.page.UserData.SYSTEM_ADMINISTRATOR;;
+import com.qagroup.google.page.UserModel;;
 
-public class LoginIntoOrangeTest implements IWebAppTest {
+public class LoginIntoOrangeTest extends AbstractTest {
 
-	private Google google = new Google();
 	private OrangeLoginPage loginPage;
 	private UserModel user;
 	private OrangeHomePage homePage;
@@ -26,10 +23,4 @@ public class LoginIntoOrangeTest implements IWebAppTest {
 
 		Assert.assertEquals(homePage.getLoggedUserRole(), user.getRole());
 	}
-
-	@Override
-	public IWebApp getTestedApp() {
-		return google;
-	}
-
 }

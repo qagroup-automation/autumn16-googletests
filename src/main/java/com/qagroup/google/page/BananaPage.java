@@ -6,13 +6,10 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BananaPage {
-
-	private WebDriver driver;
+public class BananaPage extends AbstractPage {
 
 	@FindBy(css = ".newsletter-button.yellow-button > .show-newsletter")
 	private WebElement yellowButton;
@@ -30,8 +27,7 @@ public class BananaPage {
 	private WebElement responseMessage;
 
 	public BananaPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(this.driver, this);
+		super(driver);
 	}
 
 	public String subscribeAndGetResponseMessage(String email) {
@@ -40,7 +36,7 @@ public class BananaPage {
 				.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOf(emailInput));
 		emailInput.sendKeys(email);
 		emailInput.submit();
-		//submitButton.click();
+		// submitButton.click();
 		JavascriptExecutor.class.cast(driver).executeScript("arguments[0].click();", submitButton);
 		return responseMessage.getText();
 	}

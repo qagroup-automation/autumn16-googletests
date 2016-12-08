@@ -1,4 +1,4 @@
-package com.qagroup.google.page;
+package com.qagroup.google.tools;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -17,10 +17,7 @@ import io.appium.java_client.remote.MobilePlatform;
 
 public class Browser {
 
-	private static int flag = 0;
-
 	public static WebDriver getDriver() {
-		flag++;
 		String browser = System.getProperty("browser");
 
 		if (browser == null) {

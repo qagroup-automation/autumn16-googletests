@@ -7,16 +7,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
 
-public class StartPage {
-
-	private WebDriver driver;
+public class StartPage extends AbstractPage {
 
 	@FindBy(id = "lst-ib")
 	private WebElement searchInput;
@@ -37,20 +34,19 @@ public class StartPage {
 	private WebElement keyboardCloseButton;
 
 	public StartPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+		super(driver);
 	}
 
 	@Step("Search for {0}")
 	public ResultPage searchFor(String keywords) {
-		typeIntoSearchInput(keywords);
+		clearAndTypeIntoSearchInput(keywords);
 		clickSearchButton();
 		return new ResultPage(driver);
 	}
 
 	@Step("Type [{0}] into Search input")
-	private void typeIntoSearchInput(String keywords) {
-		searchInput.sendKeys(keywords);
+	private void clearAndTypeIntoSearchInput(String keywords) {
+		clearAndType(searchInput, keywords);
 	}
 
 	@Step
@@ -70,8 +66,9 @@ public class StartPage {
 	}
 
 	@Step("Check if Screen Keyboard is displayed")
+	@Attachment
 	public boolean isScreenKeyboardDisplayed() {
-		return screenKeyboard.isDisplayed();
+		return isElementDisplayed(screenKeyboard);
 	}
 
 	@Step("Close Screen Keyboard")

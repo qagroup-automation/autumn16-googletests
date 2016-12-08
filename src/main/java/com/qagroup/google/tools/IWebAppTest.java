@@ -1,4 +1,4 @@
-package com.qagroup.google.page;
+package com.qagroup.google.tools;
 
 public interface IWebAppTest {
 

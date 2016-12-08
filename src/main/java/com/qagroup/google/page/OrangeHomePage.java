@@ -10,7 +10,7 @@ public class OrangeHomePage {
 	public OrangeHomePage(WebDriver driver) {
 		super();
 		this.driver = driver;
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(this.driver, this);
 	}
 
 	public String getLoggedUserRole() {

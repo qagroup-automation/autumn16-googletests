@@ -3,12 +3,7 @@ package com.qagroup.google.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.qagroup.google.page.Google;
-import com.qagroup.google.page.IWebApp;
-import com.qagroup.google.page.IWebAppTest;
-
-public class WaitForBananasTest implements IWebAppTest {
-	Google google = new Google();
+public class WaitForBananasTest extends AbstractTest {
 
 	@Test
 	public void testWithWaiter() {
@@ -17,8 +12,4 @@ public class WaitForBananasTest implements IWebAppTest {
 		Assert.assertEquals(responseMessage, "Subscription successful", "\nIncorrect response message:\n");
 	}
 
-	@Override
-	public IWebApp getTestedApp() {
-		return google;
-	}
 }

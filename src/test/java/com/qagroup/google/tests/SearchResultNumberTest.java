@@ -6,9 +6,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.qagroup.google.page.Google;
-import com.qagroup.google.page.IWebApp;
-import com.qagroup.google.page.IWebAppTest;
 import com.qagroup.google.page.ResultPage;
 import com.qagroup.google.page.StartPage;
 
@@ -16,11 +13,10 @@ import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Stories;
 
 @Features("Search")
-public class SearchResultNumberTest implements IWebAppTest {
+public class SearchResultNumberTest extends AbstractTest {
 
 	private StartPage startPage;
 	private ResultPage resultPage;
-	private Google google = new Google();
 
 	@BeforeMethod
 	public void setup() {
@@ -44,10 +40,6 @@ public class SearchResultNumberTest implements IWebAppTest {
 	@AfterMethod(alwaysRun = true)
 	public void tearDown() {
 		google.close();
-	}
-
-	public IWebApp getTestedApp() {
-		return this.google;
 	}
 
 }
